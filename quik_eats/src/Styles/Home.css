@@ -1,96 +1,142 @@
 .home {
   width: 100%;
-  height: 90vh;
+  min-height: clamp(70vh, 90vh, 100vh); 
   display: flex;
   justify-content: center;
-  align-items: left;
+  align-items: flex-start;
   flex-direction: column;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  padding: clamp(10px, 2vw, 20px); 
+  box-sizing: border-box;
 }
 
 .homeContainer {
-  width: auto;
-  margin-left: 50px;
+  width: 100%;
+  max-width: 1200px; 
+  margin-left: clamp(20px, 5vw, 50px); 
+  padding: clamp(10px, 2vw, 20px); 
 }
 
 .homeContainer h1 {
-  justify-content: center;
-  align-items: center;
-  font-size: 40px;
-  height: 60px;
-  font-weight: 50;
+  font-size: clamp(24px, 5vw, 40px); 
+  height: auto; 
+  font-weight: 500; 
   color: black;
+  margin: clamp(5px, 1vh, 10px) 0; 
+  text-align: left; 
 }
 
 .homeContainer p {
   padding: 0;
-  font-size: 35px;
+  font-size: clamp(18px, 4vw, 35px); 
   font-weight: lighter;
   color: black;
+  margin: clamp(8px, 1.5vh, 15px) 0; 
 }
 
 .homeContainer button {
-  color: black;
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  justify-content: center;
   background-color: #121619;
-  height: 70px;
-  width: 250px;
-  color:white;
+  height: clamp(50px, 8vh, 70px); 
+  width: clamp(180px, 25vw, 250px); 
+  font-size: clamp(16px, 3vw, 30px); 
   text-decoration: none;
-  font-size: 30px;
+  transition: background-color 0.3s ease-in; 
+  margin: clamp(10px, 2vh, 20px) 0; 
 }
 
-.homerContainer button:hover {
+
+.homeContainer button:hover {
   background-color: #07090a;
-  cursor: pointer;
-  transition: 0.3s ease-in;
+}
+
+@media only screen and (max-width: 900px) {
+  .homeContainer {
+    margin-left: clamp(15px, 3vw, 30px);
+    padding: clamp(8px, 1.5vw, 15px);
+  }
+  
+  .homeContainer h1 {
+    font-size: clamp(20px, 4.5vw, 36px);
+  }
+  
+  .homeContainer p {
+    font-size: clamp(16px, 3.5vw, 30px);
+  }
 }
 
 @media only screen and (max-width: 650px) {
   .home {
     justify-content: center;
     align-items: center;
+    min-height: clamp(60vh, 80vh, 90vh);
   }
-  
 
   .homeContainer {
-    margin-left: 0px;
+    margin: 0 auto; 
     border-radius: 10px;
-    padding: 10px;
-    width: 80%;
+    padding: clamp(10px, 3vw, 20px);
+    width: clamp(70%, 90vw, 90%); 
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: #121619;
     color: white;
+    text-align: center; 
   }
 
   .homeContainer h1 {
-    font-size: 40px;
-    height: 30px;
+    font-size: clamp(20px, 6vw, 40px);
     color: white;
+    height: auto;
   }
 
   .homeContainer p {
-    font-size: 30px;
+    font-size: clamp(16px, 5vw, 30px);
     color: white;
   }
 
   .homeContainer button {
     background-color: white;
     color: #121619;
-    margin-bottom: 30px;
+    margin: clamp(15px, 3vh, 30px) auto; 
   }
 
   .homeContainer button:hover {
     background-color: rgb(225, 225, 225);
-    color: #121619;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .homeContainer {
+    width: clamp(80%, 95vw, 95%);
+    padding: clamp(8px, 2vw, 15px);
+  }
+  
+  .homeContainer button {
+    width: clamp(150px, 80vw, 200px);
+    height: clamp(40px, 6vh, 50px);
+    font-size: clamp(14px, 4vw, 20px);
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .homeContainer {
+    margin-left: clamp(50px, 8vw, 100px);
+  }
+  
+  .homeContainer h1 {
+    font-size: clamp(36px, 5vw, 48px);
+  }
+  
+  .homeContainer p {
+    font-size: clamp(28px, 4vw, 40px);
   }
 }
