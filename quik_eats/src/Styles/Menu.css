@@ -5,32 +5,40 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: clamp(20px, 3vh, 40px); /* Responsive padding */
+  box-sizing: border-box;
 }
+
 .menu .menuTitle {
-  
-  font-size: 15px;
+  font-size: clamp(12px, 2vw, 15px); /* Responsive font size */
+  margin-bottom: clamp(15px, 2vh, 30px); /* Responsive margin */
+  text-align: center;
 }
 
 .menuList {
-  width: 70vw;
+  width: clamp(300px, 70vw, 1200px); /* Responsive width with min/max */
   height: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* More flexible grid */
+  gap: clamp(15px, 2vw, 30px); /* Responsive gap */
   place-items: center;
+  padding: 0 clamp(10px, 2vw, 20px); /* Responsive padding */
 }
 
 /* MENU ITEM STYLING */
-
 .menuItem {
   border-radius: 15px;
-  width: 300px;
-  height: 350px;
-  margin: 20px;
+  width: clamp(200px, 100%, 300px); /* Responsive width */
+  height: clamp(280px, 45vw, 350px); /* Responsive height */
+  margin: clamp(10px, 2vw, 20px); /* Responsive margin */
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  background-color: white; /* Added for consistency */
+  overflow: hidden; /* Ensure content stays within borders */
 }
+
 .menuItem:hover {
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.5);
-  transition: 0.3s ease-in;
+  transition: box-shadow 0.3s ease-in; /* Specified property for transition */
   cursor: pointer;
 }
 
@@ -38,25 +46,70 @@
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   width: 100%;
-  height: 200px;
+  height: clamp(150px, 25vw, 200px); /* Responsive image height */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.menuItem h1,
-.menuItem p {
-  margin-left: 20px;
+.menuItem h1 {
+  margin: clamp(10px, 2vw, 20px) 0 0 clamp(10px, 2vw, 20px);
+  font-size: clamp(18px, 3vw, 24px); /* Responsive font size */
 }
 
+.menuItem p {
+  margin: clamp(5px, 1vh, 10px) 0 clamp(10px, 2vh, 20px) clamp(10px, 2vw, 20px);
+  font-size: clamp(14px, 2vw, 16px); /* Responsive font size */
+}
+
+/* Responsive Breakpoints */
 @media only screen and (max-width: 1300px) {
   .menuList {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
 }
 
 @media only screen and (max-width: 800px) {
   .menuList {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Single column for small screens */
+    width: clamp(250px, 90vw, 600px);
+  }
+  
+  .menuItem {
+    width: 100%; /* Full width on small screens */
+    max-width: 400px; /* Prevent over-stretching */
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .menuItem {
+    height: clamp(250px, 40vw, 300px);
+  }
+  
+  .menuItem div {
+    height: clamp(120px, 20vw, 160px);
+  }
+  
+  .menuItem h1 {
+    font-size: clamp(16px, 4vw, 20px);
+  }
+  
+  .menuItem p {
+    font-size: clamp(12px, 3vw, 14px);
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .menuList {
+    width: clamp(900px, 70vw, 1400px);
+  }
+  
+  .menuItem {
+    width: clamp(280px, 20vw, 350px);
+    height: clamp(320px, 25vw, 400px);
+  }
+  
+  .menuItem div {
+    height: clamp(180px, 15vw, 240px);
   }
 }
