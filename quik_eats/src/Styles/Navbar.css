@@ -4,7 +4,8 @@
   background-color: #121619;
   display: flex;
   flex-direction: row;
-  border-bottom: white 300px;
+  border-bottom: 2px solid white;
+  position: relative; /* Added for better mobile positioning */
 }
 
 .navbar .leftSide {
@@ -13,10 +14,13 @@
   display: flex;
   align-items: center;
   padding-left: 150px;
+  transition: all 0.3s ease;
 }
 
 .navbar .leftSide img {
   width: 200px;
+  height: auto;
+  transition: width 0.3s ease; /* Smooth logo resize */
 }
 
 .navbar .rightSide {
@@ -25,15 +29,49 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 20px;
 }
 
 .navbar a {
   color: white;
   text-decoration: none;
-  margin: 20px;
+  margin: 0 20px;
+  font-size: 18px;
+  transition: color 0.3s ease;
 }
 
-.navbar .rightSide button {
+.navbar a:hover {
+  color: #ddd;
+}
+
+.signup-btn, .login-btn {
+  padding: 8px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.signup-btn {
+  background-color: #ffffff;
+  color: #121619;
+}
+
+.login-btn {
+  background-color: #666;
+  color: white;
+}
+
+.signup-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.login-btn:hover {
+  background-color: #777;
+}
+
+.navbar .rightSide button:not(.signup-btn):not(.login-btn) {
   background-color: transparent;
   border: none;
   color: white;
@@ -44,60 +82,217 @@
   font-size: 40px;
 }
 
-.navbar #open {
-  padding-left: 0px;
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  color: #121619;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-content label {
+  display: flex;
+  flex-direction: column;
+  color: #121619;
+}
+
+.modal-content input {
+  margin-top: 5px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%; /* Full width on mobile */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.modal-content button {
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.modal-content button[type="submit"] {
+  background-color: #121619;
+  color: white;
+}
+
+.modal-content button[type="button"] {
+  background-color: #ccc;
+  color: #121619;
+}
+
+.modal-link {
+  color: #121619;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.modal-link:hover {
+  color: #333;
+}
+
+/* Responsive Design */
+.navbar #open {
+  padding-left: 0;
+  flex-direction: column; /* Stack items vertically when open */
+  height: auto; /* Allow height to adjust */
+  background-color: #121619; /* Maintain background */
+  position: absolute; /* Position over content */
+  top: 100px; /* Below navbar */
+  left: 0;
+  width: 100%; /* Full width */
+  z-index: 999; /* Above other content */
+}
+
 .navbar #open img {
   display: none;
 }
 
 .navbar #close img {
-  display: inherit;
+  display: block;
 }
 
 .navbar #open .hiddenLinks {
-  display: inherit;
+  display: flex;
+  flex-direction: column;
   margin-left: 30px;
+  padding: 20px 0; /* Add vertical padding */
+  width: 100%;
 }
 
 .navbar #close .hiddenLinks {
   display: none;
 }
 
-.navbar #open a {
-  width: 70px;
-  margin: 5px;
-}
-@media only screen and (max-width: 900px) {
-  .navbar .rightSide a {
-    width: 70px;
+/* Large screens (above 900px) */
+@media only screen and (min-width: 901px) {
+  .navbar .rightSide button:not(.signup-btn):not(.login-btn) {
+    display: none;
   }
+  .hiddenLinks {
+    display: none;
+  }
+}
+
+/* Medium screens (600px - 900px) */
+@media only screen and (max-width: 900px) {
   .navbar .leftSide {
     padding-left: 50px;
   }
+  .navbar .leftSide img {
+    width: 150px; /* Smaller logo */
+  }
+  .navbar a {
+    margin: 0 15px; /* Reduced margin */
+    font-size: 16px; /* Slightly smaller text */
+  }
+  .signup-btn, .login-btn {
+    padding: 6px 15px; /* Slightly smaller buttons */
+  }
 }
 
+/* Small screens (below 600px) */
 @media only screen and (max-width: 600px) {
+  .navbar {
+    height: 80px; /* Reduced height */
+  }
+  
+  .navbar .leftSide {
+    padding-left: 20px;
+    flex: 70%; /* Adjust proportions */
+  }
+  
+  .navbar .leftSide img {
+    width: 120px; /* Even smaller logo */
+  }
+  
+  .navbar .rightSide {
+    flex: 30%;
+    justify-content: flex-end;
+    padding-right: 20px;
+    gap: 10px;
+  }
+  
   .navbar .rightSide a {
     display: none;
   }
-
-  .navbar .rightSide {
-    justify-content: flex-end;
-    padding-right: 50px;
+  
+  .navbar .rightSide button:not(.signup-btn):not(.login-btn) {
+    display: block;
   }
-
-  .navbar .rightSide button {
-    display: inherit;
+  
+  .navbar #open .hiddenLinks {
+    margin-left: 0;
+    padding: 15px;
+    align-items: center;
+  }
+  
+  .navbar #open .hiddenLinks a,
+  .navbar #open .hiddenLinks button {
+    margin: 10px 0;
+    width: 100%; /* Full width buttons/links */
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .modal-content {
+    padding: 20px;
+    width: 90%; /* Wider on mobile */
+  }
+  
+  .modal-content h2 {
+    font-size: 24px; /* Adjust heading size */
+  }
+  
+  .modal-content input {
+    padding: 6px; /* Slightly smaller inputs */
+  }
+  
+  .modal-content button {
+    padding: 8px; /* Slightly smaller buttons */
   }
 }
 
-@media only screen and (min-width: 600px) {
-  .navbar .rightSide button {
-    display: none;
+/* Very small screens (below 400px) */
+@media only screen and (max-width: 400px) {
+  .navbar {
+    height: 60px; /* Minimum height */
   }
-
-  .hiddenLinks {
-    display: none;
+  
+  .navbar .leftSide img {
+    width: 100px; /* Minimum logo size */
+  }
+  
+  .navbar .rightSide svg {
+    font-size: 30px; /* Smaller hamburger */
   }
 }
